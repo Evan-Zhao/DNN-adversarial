@@ -1,0 +1,2 @@
+image-process/fooling_images_5000_cppn.tar.gz filter=lfs diff=lfs merge=lfs -text
+image-process/MNIST/*.csv filter=lfs diff=lfs merge=lfs -text
