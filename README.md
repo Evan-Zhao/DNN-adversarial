@@ -1,32 +1,69 @@
-# DNN Adversarial Examples Collection
+# Collection of ML System Misclassification
 
-This repo collects ideas on adversarial examples for DNN (deep neural networks), the procedures to reproduce them, and hopefully also the reproduced DNN and adversarial dataset set, so that study of misclassification in deep learning systems becomes easier.
+(Update: apart from adversarial examples, now we also have reports for real-world DNN errors that have actually occurred, methods for generating more "realworld-looking" counterexamples, and others, so we changed the title a bit.)
 
-## Source and Criterion on the Examples Collected
+This repo collects ideas on misclassification examples for ML (machine learning) systems, including those occurred and those could be manually triggered. For some, we'll also include some attempt to  reproduce and spot them. This collection prefers industrial-strength and state-of-the-art ML systems.
 
-First, for a given task, there are (naturally) some DNNs that perform better and some that performs worse. Since we're working to reveal the corner cases for deep learning systems, having a collection of trivial DNNs are of less help. We prefer industrial-strength and state-of-the-art DL systems instead.
+We'll try to collect examples from as many fields (image processing, reinforcement learning, natural language processing, etc.) as possible. 
 
-In practice, it turned out that most of the examples come from papers on *adversarial examples*. Accordingly, to replicate the result we often need DNNs *trained by ourselves* strictly following the proposal of these papers, and only in some cases, the papers refer to pre-trained environments that are ready to apply. 
+The [DeepXplore](https://dl.acm.org/citation.cfm?id=3132785) paper has already collected some examples -- mainly on image processing -- so we'll not spend too much time on this area. We do have some image-processing DNNs fooled by *another* kind of adversarial examples, and we'll see them later.
 
-Obtaining examples on industrial DL system failure is, put simply, impossible. DNNs used by commercial products are meant to be internal, and even reports on such failures are also not available. We've also gone through several [Google self-driving car monthly reports](https://static.googleusercontent.com/media/www.google.com/zh-CN//selfdrivingcar/files/reports/report-0916.pdf) trying to find accidents that involved technical details, but end up only with cases that can be readily blamed on human decision failure.
+[CleverHans](https://github.com/tensorflow/cleverhans) is a library for benchmarking ML systems, testing their performance against adversarial examples. If we wish to reproduce certain misclassification of ML system, this library may automate most of work for us.
 
-In addition, the [DeepXplore](https://dl.acm.org/citation.cfm?id=3132785) paper has already collected some examples -- mainly on image processing -- so we'll not spend too much time on this area. We do have some image-processing DNNs fooled by *another* kind of adversarial examples, and we'll see them later.
+## [Real-world Accidents Involving ML Systems](./ML-accidents.md)
 
-`TODO`: all examples below are supposed to be reproducible, and for most we've included an outline on how to reproduce them, but we'll need some time for that to be done. Some examples may not only require a properly trained DNN (the one to be attacked), but also an adversarial network or case-generating algorithms, so that will be some non-trivial work.
+- Self-driving car accidents
 
-## General Idea on Adversarial Examples
+- Stereotypical and biased AI (racism, anti-feminism, etc.)
 
-Here you'll see some [interesting comments](image-process/explaining-adversarial.md) on the nature of adversarial attack and defence.
+## Generating Counterexamples
 
+(Materials under [`/generative`](generative/))
+
+Generating counterexamples for a given ML system can provide insight on where it could go wrong. With regard to the examples generated, these methods can be classified into the following categories.
+
+### Adversarial methods
+
+Adversarial methods perturb a given (valid) input by small amount so that it's still the same under human perception, but classified differently by machine. [Here](generative/explaining-adversarial.md) are details on this method.
+
+Adversarials are particularly useful for attacking ML systems since the variation is made difficult to perceive by human. Accordingly, some defensive methods are designed to prevent such attack. [This](generative/ML-attack-defence.md) introduces some attack and defence approaches relevant to ML systems.
+
+### Direct encoding
+
+Direct encoding pick up a input directly from the input space which usually is unrecognizable, but the target DNN is confident that it belongs to certain class. 
+
+This category is rare. The paper [[1]](image-process/dnn-fooling-1412.1897.pdf) is representative on this method; the term "direct encoding" is also coined is this paper. For an explanation of this category, see this [review](./review/dnn-fooling.md).
+
+### Indirect encoding
+
+Indirect encoding instead pick a value from a *latent space*, and generatively map it to the input space (typically using GAN, generative adversarial network). The generated input may be valid or invalid but resembles a valid input, while the target DNN will be fooled.
+
+The paper [[1]](image-process/dnn-fooling-1412.1897.pdf) also apply indirect encoding to generate unnatural images containing certain patterns that will more effectively confuse DNNs. 
+
+[[11]](https://arxiv.org/pdf/1710.11342.pdf) purposes instead that valid and *natural* images could be generated which confuse DNNs to misclassify them just like adversarial examples, but more resembles real-world inputs.
+
+---
+
+With regard to the access required, the methods can be again classified into these categories:
+
+`TODO`: fill in this part with material.
+
+1. White-box method. They require full knowledge to the ML systems being studied, which in the case of DNN will be the structure and weights of network.
+
+1. Black-box method. They could work with ML systems with only input and output accessible. 
+
+    Black-box methods differ in "opacity" of the box. For example, in classification model with confidence output, while some methods require access to the confidence value, some only require classification result. Certain methods does not need the ability to feed input and receive feedback one-on-one, but could instead process input and output datasets and infer correspondence. 
+
+`TODO`: fill the categories below.
 ## Image Processing
 
-Materials on this topic are contained under path `/image-process`.
+(Materials under [`/image-process`](image-process/)).
 
 For now we have 2 reproducible examples:
 
 1. [Indirectly encoded images](image-process/indirectly-encoded-images.md): generates counter-examples for image DNN, but of a different kind from these generated by DeepXplore.
 
-1. [Black-box attack](image-process/black-box-attack.md): generates cases for classifiers with unknown structure (blackbox), which applies to Amazon and Google ML services (and makes it more interesting).
+2. [Black-box attack](image-process/black-box-attack.md): generates cases for classifiers with unknown structure (blackbox), which applies to Amazon and Google ML services (and makes it more interesting).
 
 The papers [[4]](https://arxiv.org/pdf/1412.6572.pdf) and [[5]](https://arxiv.org/pdf/1607.02533.pdf) also contains some examples that are more similar to these found in DeepXplore paper.
 
@@ -35,7 +72,7 @@ The papers [[4]](https://arxiv.org/pdf/1412.6572.pdf) and [[5]](https://arxiv.or
 Materials on this topic are contained under path `/nlp`.
 
 Currently we have 1 reproducible example:
-
+https://arxiv.org/pdf/1605.06083.pdf
 1. [Evaluating reading comprehension systems](nlp/eval-reading-system.md): generates perturbed query based on seed query for reading comprehension system. 
 
 `TODO`: we have some other interesting unread papers on NLP, including: 
@@ -44,18 +81,4 @@ Currently we have 1 reproducible example:
 
 * [Adversarial Examples in NLP Contexts](https://nlp.stanford.edu/courses/cs224n/2015/reports/29.pdf)
 
-## List of Paper Reference
-
-Numbering of papers in subtopic files also follow this. Some paper may have local copy since we'll more frequently refer to them than others.
-
-1. Anh Nguyen et al. "Deep Neural Networks are Easily Fooled: High Confidence Predictions for Unrecognizable Images." [local](image-process/dnn-fooling-1412.1897.pdf)/[arXiv link](https://arxiv.org/pdf/1412.1897.pdf)
-
-1. Yangqing Jia et al. "Caffe: Convolutional Architecture for Fast Feature Embedding." [arXiv link](https://arxiv.org/pdf/1408.5093.pdf)
-
-1. Nicolas Papernot et al. "Practical black-box attacks against deep learning systems using adversarial examples." [local](image-process/black-box-1602.02697.pdf)/[arXiv link](https://arxiv.org/pdf/1602.02697.pdf)
-
-1. Ian J. Goodfellow et al. "Explaining and Harnessing Adversarial Examples." [arXiv link](https://arxiv.org/pdf/1412.6572.pdf)
-
-1. Alexey Kurakin et al. "Adversarial Examples in the Physical World." [arXiv link](https://arxiv.org/pdf/1607.02533.pdf)
-
-1. Robin Jia, Percy Liang. "Adversarial Examples for Evaluating Reading Comprehension Systems." [local](nlp/eval-reading-system-1707.07328.pdf)/[arXiv link](https://arxiv.org/pdf/1707.07328.pdf)
+## Reinforcement Learning
