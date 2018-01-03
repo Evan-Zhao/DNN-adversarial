@@ -13,7 +13,4 @@ Accordingly, defence for DNN is difficult and tends to fail; Papernot et al. inv
 
 Goodfellow et al. explain that these phenomenon have to do with *linear behavior in a high-dimensional space*. The basic idea is that, there exists some *directions* in the space that "aligns most closely with weights of a DNN (on a certain output)," and when the input contains a component in that direction, the classification is forced to be the corresponding output. Details at [[4]](https://arxiv.org/pdf/1412.6572.pdf).
 
-## ML Attack Approaches
-
-## ML Defence Approaches
-
+## Defence Attempts

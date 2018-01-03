@@ -12,7 +12,7 @@ Numbering of papers in all files should follow this. Some papers may have local 
 
 5. Alexey Kurakin et al. "Adversarial Examples in the Physical World." [arXiv link](https://arxiv.org/pdf/1607.02533.pdf)
 
-6. Robin Jia, Percy Liang. "Adversarial Examples for Evaluating Reading Comprehension Systems." [local](nlp/eval-reading-system-1707.07328.pdf)/[arXiv link](https://arxiv.org/pdf/1707.07328.pdf)
+6. Robin Jia, Percy Liang. "Adversarial Examples for Evaluating Reading Comprehension Systems." [local](eval-reading-system-1707.07328.pdf)/[arXiv link](https://arxiv.org/pdf/1707.07328.pdf)
 
 7. Yuchi Tian et al. "DeepTest: Automated Testing of Deep-Neural-Network-driven Autonomous Cars." [arXiv link](https://arxiv.org/pdf/1708.08559.pdf)
 
@@ -22,6 +22,6 @@ Numbering of papers in all files should follow this. Some papers may have local 
 
 10. Karon Simonyan et al. "Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps." [arXiv Link](https://arxiv.org/pdf/1312.6034.pdf)
 
-11. Zhengli Zhao et al. "Generating Natural Adversarial Examples." [arXiv Link](https://arxiv.org/pdf/1710.11342.pdf)
+11. Zhengli Zhao et al. "Generating Natural Adversarial Examples." [local](natural-adv-1710.11342.pdf)/[arXiv Link](https://arxiv.org/pdf/1710.11342.pdf)
 
 12. Sandy Huang et al. "Adversarial Attacks on Neural Network Policies." [arXiv Link](https://arxiv.org/pdf/1702.02284.pdf)

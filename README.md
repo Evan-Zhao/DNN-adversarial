@@ -72,15 +72,14 @@ With regard to the access required to underlying model, the methods can be again
 
 In addition, the papers [[4]](https://arxiv.org/pdf/1412.6572.pdf) and [[5]](https://arxiv.org/pdf/1607.02533.pdf) take on methods that much resemble those found in DeepXplore paper.
 
-`TODO`: fill the categories below.
 ## Natural Language Processing (NLP)
 
-1. [Evaluating reading comprehension systems](papers/eval-reading-system.md): generates perturbed query based on seed query for reading comprehension system. 
+1. Adversarial by semantic-preserving transformations. Generates perturbed query through semantic-preserving rules for reading comprehension system. Proposed in [[6](https://arxiv.org/pdf/1707.07328.pdf)/[review](papers/eval-reading-system.md)]
 
-`TODO`: we have some other interesting unread papers on NLP, including: 
+1. Natural adversarial examples for text entailment and machine translation. Proposed in [[11](https://arxiv.org/pdf/1710.11342.pdf)/[review](papers/natural-adv.md)].
 
-* [Adversarial Evaluation for Models of Natural Language](https://pdfs.semanticscholar.org/94a8/30c18aee5263a22bfc3cfde7f03e455f2312.pdf)
 
-* [Adversarial Examples in NLP Contexts](https://nlp.stanford.edu/courses/cs224n/2015/reports/29.pdf)
+`TODO`: fill the categories below.
 
 ## Reinforcement Learning
+
