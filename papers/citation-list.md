@@ -23,3 +23,5 @@ Numbering of papers in all files should follow this. Some papers may have local 
 10. Karon Simonyan et al. "Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps." [arXiv Link](https://arxiv.org/pdf/1312.6034.pdf)
 
 11. Zhengli Zhao et al. "Generating Natural Adversarial Examples." [arXiv Link](https://arxiv.org/pdf/1710.11342.pdf)
+
+12. Sandy Huang et al. "Adversarial Attacks on Neural Network Policies." [arXiv Link](https://arxiv.org/pdf/1702.02284.pdf)
